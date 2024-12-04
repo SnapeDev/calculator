@@ -8,6 +8,22 @@
   </head>
   <body>
     <div class="container">
+      <div class="notepad-container">
+        <!-- Star to toggle notepad visibility -->
+        <button class="toggle-notepad" onclick="toggleNotepad()">
+          &#128760;
+        </button>
+
+        <div class="notepad" id="notepad">
+          <h3>Calculations</h3>
+          <textarea id="notepad-text" readonly rows="10" cols="30"></textarea
+          ><br />
+          <div class="buttons">
+            <button class="clear" onclick="clearNotepad()">&#10007;</button>
+            <button class="save" onclick="saveNotepad()">&#10003;</button>
+          </div>
+        </div>
+      </div>
       <div class="calculator">
         <form>
           <div class="display">
@@ -39,8 +55,8 @@
             <input type="button" value="9" onclick="display.value += '9'" />
             <input
               type="button"
-              value="*"
-              onclick="display.value += '*'"
+              value="X"
+              onclick="addMultiplySymbol()"
               class="operator"
             />
           </div>
@@ -74,11 +90,50 @@
               class="equal operator"
               type="button"
               value="="
-              onclick="display.value = eval(display.value)"
+              onclick="calculateResult()"
             />
           </div>
         </form>
       </div>
     </div>
+
+    <script>
+      const display = document.forms[0].elements.display;
+      const notepadText = document.getElementById("notepad-text");
+
+      // Add × to the display but append * internally
+      function addMultiplySymbol() {
+        display.value += "x"; // Show × on the screen
+      }
+      function calculateResult() {
+        const expression = display.value.replace(/x/g, "*"); // Convert × to *
+        try {
+          const result = eval(expression); // Evaluate the expression
+          display.value = result;
+
+          // Append the calculation to the notepad
+          notepadText.value += `${expression} = ${result}\n`;
+        } catch (error) {
+          display.value = "Error"; // Handle invalid expressions
+        }
+      }
+
+      // Clear the notepad content
+      function clearNotepad() {
+        notepad.value = "";
+      }
+
+      // Save the content of the notepad (simple download as .txt)
+      function saveNotepad() {
+        const blob = new Blob([notepad.value], { type: "text/plain" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "calculator_history.txt";
+        link.click();
+      }
+      function toggleNotepad() {
+        notepad.classList.toggle("hidden");
+      }
+    </script>
   </body>
 </html>

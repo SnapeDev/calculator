@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 body {
   height: 100vh;
 }
@@ -17,13 +18,79 @@ body {
   background-color: #f0f0f0;
   background-image: url("https://wallpapers.com/images/hd/star-space-1920-x-1080-tgy3f5vaqubvxxhz.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; /* Centers both the notepad and calculator */
+}
+
+.notepad {
+  background-color: #fffd8e;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Courier New", Courier, monospace;
+  margin-right: 100px;
+}
+
+.notepad h3 {
+  margin-top: 0;
+  font-size: 17px;
+  color: #333;
+  font-family: Monospace;
+}
+
+textarea {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+  flex-grow: 1;
+  background-color: #fff;
+  color: #333;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  padding: 5px;
+  position: relative;
+  bottom: 10px;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 10px;
+}
+
+button.clear {
+  left: 10px;
+  margin: 20px;
+  font-size: 30px; /* Smaller size for the X */
+  color: black !important;
+}
+
+/* Save Button (Checkmark) */
+button.save {
+  right: 10px;
+  margin: 20px;
+  font-size: 32px; /* Larger size for the checkmark */
 }
 
 .calculator {
   background-color: #89d5fb;
   padding: 20px;
   border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 380px; /* Set a width for the calculator */
+  margin-right: 100px;
 }
 
 .calculator form input {
@@ -43,6 +110,7 @@ body {
 
 .calculator form input:hover {
   background-color: rgba(237, 237, 237, 0.647); /* Change color on hover */
+  transition: 0.1s ease;
 }
 
 form .display {
@@ -58,7 +126,7 @@ form .display input {
   font-size: 45px;
   box-shadow: none;
   background-color: lightslategray;
-  color: white;
+  color: rgb(48, 222, 14);
   cursor: default;
 }
 
@@ -72,4 +140,27 @@ form input.equal {
 
 form input.operator {
   color: white;
+}
+
+a:hover .toggle-notepad {
+  color: black;
+}
+
+.toggle-notepad {
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #f7ff14;
+  padding: 0;
+  margin: 20px 0;
+  margin-right: 60px;
+}
+
+.notepad-container {
+  position: relative;
+}
+
+.notepad.hidden {
+  display: none;
 }
