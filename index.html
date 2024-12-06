@@ -120,12 +120,12 @@
 
       // Clear the notepad content
       function clearNotepad() {
-        notepad.value = "";
+        notepadText.value = "";
       }
 
       // Save the content of the notepad (simple download as .txt)
       function saveNotepad() {
-        const blob = new Blob([notepad.value], { type: "text/plain" });
+        const blob = new Blob([notepadText.value], { type: "text/plain" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = "calculator_history.txt";
