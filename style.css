@@ -95,7 +95,7 @@ button.save {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 380px; /* Set a width for the calculator */
   margin-right: 100px;
-  min-width: 400px;
+  min-width: 380px; /* Set a minimum width for the calculator to prevent it from shrinking too much on smaller screens */0px;
 }
 
 .calculator form input {
